@@ -43,13 +43,15 @@ public class ControladorQytetet {
         }
         else{
             switch(estado){
-                case JA_CONSORPRESA:
+                case JA_CONSORPRESA:{
                     operacionesValidas.add(OpcionMenu.APLICARSORPRESA.ordinal());
                     break;
-                case ALGUNJUGADORENBANCARROTA:
+                }
+                case ALGUNJUGADORENBANCARROTA:{
                     operacionesValidas.add(OpcionMenu.OBTENERRANKING.ordinal());
                     break;
-                case JA_PUEDECOMPRAROGESTIONAR:
+                }
+                case JA_PUEDECOMPRAROGESTIONAR:{
                     operacionesValidas.add(OpcionMenu.PASARTURNO.ordinal());
                     operacionesValidas.add(OpcionMenu.HIPOTECARPROPIEDAD.ordinal());
                     operacionesValidas.add(OpcionMenu.VENDERPROPIEDAD.ordinal());
@@ -58,7 +60,8 @@ public class ControladorQytetet {
                     operacionesValidas.add(OpcionMenu.EDIFICARHOTEL.ordinal());
                     operacionesValidas.add(OpcionMenu.COMPRARTITULOPROPIEDAD.ordinal());
                     break;
-                case JA_PUEDEGESTIONAR:
+                }
+                case JA_PUEDEGESTIONAR:{
                     operacionesValidas.add(OpcionMenu.PASARTURNO.ordinal());
                     operacionesValidas.add(OpcionMenu.HIPOTECARPROPIEDAD.ordinal());
                     operacionesValidas.add(OpcionMenu.VENDERPROPIEDAD.ordinal());
@@ -66,16 +69,20 @@ public class ControladorQytetet {
                     operacionesValidas.add(OpcionMenu.EDIFICARCASA.ordinal());
                     operacionesValidas.add(OpcionMenu.EDIFICARHOTEL.ordinal());
                     break;
-                case JA_PREPARADO:
+                }
+                case JA_PREPARADO:{
                     operacionesValidas.add(OpcionMenu.JUGAR.ordinal());
                     break;
-                case JA_ENCARCELADO:
+                }
+                case JA_ENCARCELADO:{
                     operacionesValidas.add(OpcionMenu.PASARTURNO.ordinal());
                     break;
-                case JA_ENCARCELADOCONOPCIONDELIBERTAD:
+                }
+                case JA_ENCARCELADOCONOPCIONDELIBERTAD:{
                     operacionesValidas.add(OpcionMenu.INTENTARSALIRCARCELPAGANDOLIBERTAD.ordinal());
                     operacionesValidas.add(OpcionMenu.INTENTARSALIRCARCELTIRANDODADO.ordinal());
                     break;
+                }
             }
         }
         
@@ -112,12 +119,14 @@ public class ControladorQytetet {
         }
         else {
             switch(opcion){
-                case HIPOTECARPROPIEDAD:
+                case HIPOTECARPROPIEDAD:{
                     listaCasillas = modelo.obtenerPropiedadesJugadorSegunEstadoHipoteca(false);
                     break;
-                case CANCELARHIPOTECA:
+                }
+                case CANCELARHIPOTECA:{
                     listaCasillas = modelo.obtenerPropiedadesJugadorSegunEstadoHipoteca(true);
                     break;
+                }
             }
         }
         return listaCasillas;
@@ -127,62 +136,79 @@ public class ControladorQytetet {
         OpcionMenu opcion = OpcionMenu.values()[opcionElegida];
         String informacion = "";
         switch(opcion){
-            case INICIARJUEGO:
+            case INICIARJUEGO:{
                 informacion += "¡Comenzamos a jugar!" + "\n";
                 modelo.inicializarJuego(nombreJugadores);
                 informacion += "Juego inicializado..." + "\n";
                 break;
-            case APLICARSORPRESA:
+            }
+            case APLICARSORPRESA:{
                 informacion += "Carta Sorpresa: " + "\n" + modelo.getCartaActual().toString();
                 modelo.aplicarSorpresa();
                 break;
-            case JUGAR:
+            }
+            case JUGAR:{
                 modelo.jugar();
                 informacion += modelo.getJugadorActual().getCasillaActual();
                 break;
-            case INTENTARSALIRCARCELPAGANDOLIBERTAD:
+            }
+            case INTENTARSALIRCARCELPAGANDOLIBERTAD:{
                 modelo.intentarSalirCarcel(MetodoSalirCarcel.PAGANDOLIBERTAD);
                 break;
-            case INTENTARSALIRCARCELTIRANDODADO:
+            }
+            case INTENTARSALIRCARCELTIRANDODADO:{
                 modelo.intentarSalirCarcel(MetodoSalirCarcel.TIRANDODADO);
                 break;
-            case COMPRARTITULOPROPIEDAD:
+            }
+            case COMPRARTITULOPROPIEDAD:{
                 modelo.comprarTituloPropiedad();
                 break;
-            case HIPOTECARPROPIEDAD:
+            }
+            case HIPOTECARPROPIEDAD:{
                 modelo.hipotecarPropiedad(casillaElegida);
                 break;
-            case CANCELARHIPOTECA:
+            }
+            case CANCELARHIPOTECA:{
                 modelo.cancelarHipoteca(casillaElegida);
                 break;
-            case EDIFICARCASA:
+            }
+            case EDIFICARCASA:{
                 modelo.edificarCasa(casillaElegida);
                 break;
-            case EDIFICARHOTEL:
+            }
+            case EDIFICARHOTEL:{
                 modelo.edificarHotel(casillaElegida);
                 break;
-            case VENDERPROPIEDAD:
+            }
+            case VENDERPROPIEDAD:{
                 modelo.venderPropiedad(casillaElegida);
                 break;
-            case PASARTURNO:
+            }
+            case PASARTURNO:{
                 modelo.siguienteJugador();
                 System.out.println("Turno para " + modelo.getJugadorActual().getNombre());
                 break;
-            case OBTENERRANKING:
+            }
+            case OBTENERRANKING:{
                 modelo.obtenerRanking();
                 break;
-            case TERMINARJUEGO:
+            }
+            case TERMINARJUEGO:{
                 informacion += "JUEGO TERMINADO!";
                 break;
-            case MOSTRARJUGADORACTUAL:
+            }
+            case MOSTRARJUGADORACTUAL:{
                 System.out.println(modelo.getJugadorActual().toString());
                 break;
-            case MOSTRARJUGADORES:
+            }
+            case MOSTRARJUGADORES:{
                 System.out.println(modelo.getJugadores().toString());
                 break;
-            case MOSTRARTABLERO:
+            }
+            case MOSTRARTABLERO:{
                 System.out.println(modelo.getTablero().toString());
-                break;           
+                break;      
+            }
         }
         return informacion;
     }
