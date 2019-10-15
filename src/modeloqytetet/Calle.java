@@ -56,9 +56,6 @@ public class Calle extends Casilla {
     
     @Override
     public String toString(){
-        return "Calle{" + 
-                "numeroCasilla = " + super.getNumeroCasilla() +
-                ", coste = " + super.getCoste() +
-                ", titulo = " + titulo + "}" + "\n";
+        return "Calle{" + "numeroCasilla = " + super.getNumeroCasilla() + ", coste = " + super.getCoste() + ", titulo = " + titulo + "}" + "\n";
     }
 }
